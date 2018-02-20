@@ -1,0 +1,46 @@
+# The `service` block is the name of the service
+service: my-service-name
+
+# The `custom` block defines variable which can be referenced by `self:custom.`
+custom:
+  default_stage: production
+  optimize:
+    presets: ['env']
+    
+# The `provider` block defines where your service will be deployed
+provider:
+  name: aws
+  region: eu-west-1
+  stage: ${opt:stage, self:custom.default_stage}
+  runtime: nodejs6.10
+  memorySize: 128
+  role: arn
+  vpc:
+    securityGroupIds:
+      - 
+    subnetIds:
+      - 
+
+# The `package` block defines how to package the code
+package:
+  exclude:
+    - .git/**
+    - README.md
+    - package*.json
+    - node_modules/.bin/**
+    - node_modules/**/license
+    - node_modules/**/readme.md
+    - node_modules/**/package.json
+  
+  excludeDevDependencies: true
+
+# Optimize plugin allows for minification and babelification of code
+plugins:
+  - serverless-plugin-optimize
+
+# The `functions` block defines what code to deploy
+functions:
+  handler:
+    timeout: 3s
+    handler: handler.handler
+    memorySize: 128

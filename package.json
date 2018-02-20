@@ -1,0 +1,38 @@
+{
+  "name": "init-serverless",
+  "version": "1.0.0",
+  "description": "An example starter set up of a serverless project.",
+  "main": "handler.js",
+  "scripts": {
+    "―――   Deployment   ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――": "",
+    "deploy": "npm run deploy:serverless --",
+    "deploy:serverless": "serverless deploy",
+    "deploy:function": "serverless deploy function -f",
+    "―――   Debug   ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――": "",
+    "predebug:size": "del .serverless-tmp",
+    "debug:size": "serverless package --package .serverless-tmp && cd .serverless-tmp && unzip *.zip && du -sh *",
+    "debug:local": "serverless invoke local --log --function",
+    "debug": "serverless invoke --log --function",
+    "―――   Testing   ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――": "",
+    "test": "npm run test:lint",
+    "test:lint": "standard"
+  },
+  "author": "Dom Charlesworth <dgc336@gmail.com> (http://domcharlesworth.co.uk/)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-function-bind": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.18.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^6.0.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "serverless": "^1.26.0",
+    "serverless-plugin-optimize": "^3.0.4-rc.1",
+    "standard": "^11.0.0"
+  }
+}
